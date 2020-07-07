@@ -20,6 +20,11 @@ RUN apt-get update && \
 	curl -OkL ${BLOGBENCH_URL}/blogbench-${BLOGBENCH_VERSION}.tar.gz && \
 	tar xzf blogbench-${BLOGBENCH_VERSION}.tar.gz && \
 	cd blogbench-${BLOGBENCH_VERSION} && \
+	rm config.guess
+
+ADD config.guess  blogbench-${BLOGBENCH_VERSION}
+
+RUN cd blogbench-${BLOGBENCH_VERSION}  && \
 	./configure && \
 	make && \
 	make install-strip
